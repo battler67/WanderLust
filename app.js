@@ -106,6 +106,10 @@ app.use("/listings/:id/reviews",reviewsRouter);
 const userRouter = require("./routes/user.js");
 app.use("/",userRouter);
 
+// const bookmarkRoutes = require("./routes/bookmark");
+
+// app.use("/listings/:id/bookmark", bookmarkRoutes);
+
 app.use("/random", (req, res, next) => {
     // console.log("hi i am a middleqare");
     // //res.send("middleware finished");
@@ -153,8 +157,6 @@ app.use("/api", checkToken, (req, res) => {
 //     console.log("res sent successfully");
 // });
 
-
-
 app.get("/err", (req, res) => {
     // abcd = abcd;
     throw new ExpressError(401, "error occured baby");
@@ -178,7 +180,6 @@ app.get("/err", (req, res) => {
 //     console.log("------ERROR2-----");
 //     next(err);
 // });
-
 
 
 app.get("/admin", (req, res) => {

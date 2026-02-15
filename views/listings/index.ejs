@@ -1,10 +1,11 @@
-<%layout("/layouts/BoilerPlate.ejs")-%> 
+<%layout("/layouts/BoilerPlate.ejs")-%>  
 
     <style>
         #filters{
             display:flex;
             flex-wrap:nowrap;
             align-items: center;   
+            justify-content: center;
             gap: 2rem;    
             overflow-x: auto;
             /* horizontal-scroller */
@@ -18,6 +19,7 @@
         }
         .filter:hover{
             opacity: 1;
+            color: #FF0000; /* Changes link color to red using a Hex code */
             cursor: pointer;
         }
         .filter p{
@@ -38,52 +40,55 @@
             align-items:center;
             width:16rem;
         }
+        .filter a {
+        color: #FF0000; /* Changes link color to red using a Hex code */
+        }
     </style>
     <body>
         <div id="filters" >
             <div class="filter">
-                <div><i class="fa-solid fa-fire"></i></div>
-                <p>Trending</p>
+                <div><a href="?category=Latest"><i class="fa-solid fa-fire"></i></a></div>
+                <p>Latest</p> 
             </div>
             <div class="filter">
-                <div> <i class="fa-solid fa-bed"></i></div>
+                <div> <a href="?category=Rooms"><i class="fa-solid fa-bed"></i></a></div>
                 <p>Rooms</p>
             </div>
             <div class="filter">
-                <div><i class="fa-solid fa-mountain-city"></i> </div>
+                <div><a href="?category=Iconic Cities"><i class="fa-solid fa-mountain-city"></i> </a></div>
                 <p>Iconic Cities</p>
             </div>
             <div class="filter">
-                <div><i class="fa-solid fa-mountain"></i> </div>
+                <div><a href="?category=Mountains"><i class="fa-solid fa-mountain"></i> </a></div>
                 <p>Mountains</p>
             </div>
             <div class="filter">
-                <div><i class="fa-solid fa-chess-king"></i></div>
+                <div><a href="?category=Castles"><i class="fa-solid fa-chess-king"></i></a></div>
                 <p>Castles</p>
             </div>
             <div class="filter">
-                <div><i class="fa-solid fa-person-swimming"></i></div>
+                <div><a href="?category=Pools"><i class="fa-solid fa-person-swimming"></i></a></div>
                 <p>Pools</p>
             </div>
             <div class="filter">
-                <div> <i class="fa-solid fa-campground"></i> </div>
+                <div><a href="?category=Camps"><i class="fa-solid fa-campground"></i></a></div>
                 <p>Camps</p>
             </div>
             <div class="filter">
-                <div> <i class="fa-solid fa-tractor"></i> </div>
+                <div><a href="?category=Farms"><i class="fa-solid fa-tractor"></i></a></div>
                 <p>Farms</p>
             </div>
             <div class="filter">
-                <div> <i class="fa-solid fa-snowflake"></i> </div>
+                <div><a href="?category=Arctic"><i class="fa-solid fa-snowflake"></i></a></div>
                 <p>Arctic</p>
             </div>
 
             <div class="filter">
-                <div> <i class="fa-solid fa-landmark-dome"></i> </div>
+                <div><a href="?category=Domes"><i class="fa-solid fa-landmark-dome"></i></a></div>
                 <p>Domes</p>
             </div>
             <div class="filter">
-                <div> <i class="fa-solid fa-ship"></i> </div>
+                <div><a href="?category=Boats"><i class="fa-solid fa-ship"></i></a></div>
                 <p>Boats</p>
             </div>
 
@@ -131,4 +136,4 @@
             }
         });
 
-    </script>
+    </script> 

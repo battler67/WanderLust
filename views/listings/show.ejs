@@ -2,29 +2,42 @@
     <script>
         const mapToken  = "<%=process.env.MAP_TOKEN%>";
         const listing = <%- JSON.stringify(listing)%>;
+        //let map = document.getElementById("map");
     </script>
     <div class="row mt-3 ">
         <div class="col-8 offset-2">
-                <h3>
-                    Listing Details:
-                </h3>
+                <div style="display: flex; justify-content: space-between;">
+                    <h3>
+                        Listing Details:
+                    </h3>
+                    <!-- <div class="tax-toggle">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+                            <label class="form-check-label" for="switchCheckDefault">BookMark</label>
+                        </div>
+                    </div> -->
+                </div>
                 <div class="card listing-card" style="width: 18rem;">
                     <img src="<%=listing.image.url%>" class="card-img-top show-img" alt="listing-image">
                     <div class="card-body">
                             <p class="card-text">Owned By <%= listing.owner.username%></p>
+                            <p class="card-text">Owner Email: <%= listing.owner.email%></p>
                             <p class="card-text"><%= listing.title%></p>
                             <p class="card-text"><%= listing.description%></p>
                             <p class="card-text">&#x20B9;<%= listing.price.toLocaleString("en-IN")%></p>
                             <p class="card-text"><%= listing.location%></p>
                             <p class="card-text"><%= listing.country%></p>
+                            <p class="card-text">Category: <%= listing.category%></p>
                     </div>
                 </div>
                 <% if(listing && listing.owner.equals(currentUser)){%>
-                    <a href="/listings/<%=listing._id%>/edit">Edit the listing</a>
-                    <br/>
-                    <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
-                        <button>Delete this listing</button>
-                    </form>
+                    <div class="d-flex gap-2 mt-2">
+                        <a href="/listings/<%=listing._id%>/edit">Edit the listing</a>
+                        &nbsp;
+                        <form class="ms-auto" method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
+                            <button class="btn btn-outline-dark">Delete this listing</button>
+                        </form>
+                    </div>
                 <%}%>
                 <hr>
                 <div class="mb-3 mt-3">
@@ -60,7 +73,7 @@
                                 <div class="invalid-feedback">Please submit some comments</div>
                                 <br/>
                             </div>
-                            <button class="btn btn-outline-dark">Submit</button>
+                            <button class="btn btn-outline-danger">Submit</button>
                         </form>
                     <%}%>
                     <% if(listing.reviews.length > 0) { %>
@@ -74,9 +87,15 @@
                                         <p class="starability-result card-text" data-rating="<%=review.rating%>">rating:
                                         </p>
                                     </div>
-                                    <form class="mb-3" method="POST" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE">
-                                        <button class="btn btn-sm btn-dark">Delete</button>
-                                    </form>
+                                    <div class="d-flex">
+                                        <form class="mb-3" method="GET" action="/listings/<%=listing._id%>/reviews/<%=review.id%>/edit">
+                                            <button class="btn btn-sm btn-dark">Edit</button>
+                                        </form>
+
+                                        <form class="mb-3 ms-auto" method="POST" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE">
+                                            <button class="btn btn-sm btn-danger">Delete</button>
+                                        </form>
+                                    </div>
                                 </div>
                             <%}%>
                         </div>

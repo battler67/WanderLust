@@ -9,8 +9,16 @@ const {validateReview} = require("../middleware.js");
 const {validateListing,isLoggedIn,isOwner,isReviewAuthor} = require("../middleware.js");
 const reviewController = require("../controllers/review.js");
 
+router.post("/",isLoggedIn,wrapAsync(
+    reviewController.createReview
+))
 router.delete("/:reviewId",isLoggedIn,isReviewAuthor,wrapAsync(reviewController.destroyReview));
+router.get("/:reviewId/edit",isLoggedIn,isReviewAuthor,wrapAsync(reviewController.renderEditForm));
 
-router.post("/",isLoggedIn,validateReview,wrapAsync(reviewController.createReview));
-
+router.patch(
+    "/:reviewId",
+    isLoggedIn,
+    isReviewAuthor,
+    wrapAsync(reviewController.updateReview)
+);
 module.exports = router;

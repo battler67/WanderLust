@@ -8,7 +8,24 @@ const geocodingClient = mbxGeoCoding({ accessToken: mapToken });
 
 
 module.exports.index = async(req, res) => {
-    let allListings = await Listing.find({});
+    const {q} = req.query;
+    const { category } = req.query;
+
+    let filter = {};
+    let sortOption = {};
+    if(category=="Latest"){
+        sortOption.category = category;
+    }else if(category){
+        filter.category = category;
+    }
+    let allListings = ((await Listing.find(filter)).sort((a, b) => b.createdAt - a.createdAt));
+    if(q &&  q.trim()!==""){
+        const regex = new RegExp(q,"i");
+        allListings = await Listing.find({
+            title:regex,
+        });
+        return res.render("listings/index",{allListings});
+    }
     res.render("listings/index", { allListings });
 }
 module.exports.renderNewForm  = (req,res)=>{  
@@ -23,8 +40,9 @@ module.exports.showListing = async(req, res) => {
     console.log(listing);
     if(!listing){
         req.flash("error","Listing you requested for is not present!");
-        res.redirect("/listings");
-    }else res.render("listings/show", { listing });
+        return res.redirect("/listings");
+    }
+    res.render("listings/show", { listing });
 };
 module.exports.createListing = async(req, res,next) => {
         let cordinate = await geocodingClient.forwardGeocode({

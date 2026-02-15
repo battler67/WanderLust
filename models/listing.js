@@ -44,8 +44,24 @@ const listingSchema = new Schema({
   },
   geometry:{
     type:pointSchema,
-  }
-});
+  },
+  category: {
+        type: String,
+        enum: [
+            "Rooms",
+            "Iconic Cities",
+            "Mountains",
+            "Castles",
+            "Pools",
+            "Camps",
+            "Farms",
+            "Arctic",
+            "Domes",
+            "Boats"
+        ],
+        default:"Rooms"
+    }
+}, { timestamps: true });
 
 listingSchema.post("findOneAndDelete",async (listing)=>{
     if(listing){
