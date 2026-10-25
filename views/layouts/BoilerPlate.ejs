@@ -12,6 +12,9 @@
     <link href="/css/rating.css" rel="stylesheet">
 
     <link href="/css/map.css" rel="stylesheet">
+
+    <link href="/css/chatbot.css" rel="stylesheet">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
     </style>
@@ -21,14 +24,16 @@
 </head>
 
 <body>
-    <%- include("../includes/navbar")%>
-        <div class="container">
-            <%- include("../includes/flash.ejs")%>
-            <%-body-%>
-        </div>
+        <%- include("../includes/navbar")%>
+            <div class="container">
+                <%- include("../includes/flash.ejs")%>
+                <%-body-%>
+            </div>
+        <%- include("../includes/chatbot") %>
         <%- include("../includes/footer")%>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-            <script src = "/js/script.js"></script>
+        <script src = "/js/script.js"></script>
+        <script src="/js/chatbot.js"></script>
 </body>
 
 
